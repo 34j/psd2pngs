@@ -27,7 +27,7 @@ pip install click tqdm psd_tools
 pyinstaller psd2pngs.py --onefile
 ```
 
-### Python script
+## Python script
 
 ```shell
 pip install click tqdm psd_tools
