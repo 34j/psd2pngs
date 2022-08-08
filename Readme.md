@@ -3,13 +3,13 @@
 <span style="font-size: 200%;">[日本語の説明](#日本語の説明)</span>
 
 psd2pngs is an application that converts psd files to png files while maintaining the layer hierarchy and performing the appropriate renaming.
-An onefile executable(.exe) file `psd2pngs.exe` is also available here.
+An onefile executable(.exe) file [`psd2pngs.exe`](https://github.com/34j/psd2pngs/releases) is also available here.
 
 ## Executable version (recommended)
 
 ### Installation
 
-- Download the latest release from Releases.
+- Download the latest release from [Releases](https://github.com/34j/psd2pngs/releases).
 
 ### Usage
 
@@ -37,11 +37,11 @@ psd2pngs.py from.psd
 ## 日本語の説明
 
 psd2pngsは、psdファイルをレイヤーの階層構造を維持したままpngファイルに変換し、適切なリネームを行うアプリケーションです。
-1ファイルにまとまったWindows用実行ファイル`psd2pngs.exe`も配布しています。
+1ファイルにまとまったWindows用実行ファイル[`psd2pngs.exe`](https://github.com/34j/psd2pngs/releases)も配布しています。
 
 ### インストール方法
 
-- Releasesから最新のリリースをダウンロードします。
+- [Releases](https://github.com/34j/psd2pngs/releases)から最新のリリースをダウンロードします。
 
 ### 使い方
 
