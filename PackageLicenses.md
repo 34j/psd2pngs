@@ -1,4 +1,4 @@
-# Package
+# Package Licenses
 
 | Name                      | Version   | License                                            |
 |---------------------------|-----------|----------------------------------------------------|
@@ -18,7 +18,7 @@
 | packaging                 | 21.3      | Apache Software License; BSD License               |
 | pefile                    | 2022.5.30 | MIT                                                |
 | psd-tools                 | 1.9.21    | MIT License                                        |
-| pycodestyle               | 2.9.1     | MIT License                                        |                                   |
+| pycodestyle               | 2.9.1     | MIT License                                        |
 | pyparsing                 | 3.0.9     | MIT License                                        |
 | pywin32-ctypes            | 0.2.0     | BSD                                                |
 | scikit-image              | 0.19.3    | BSD License                                        |
