@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
-
+from .psd2pngs import __version__
 setup(
     name="psd2pngs",
-    version="1.1.0",
+    version=__version__,
     description="Convert a PSD file to PNG files.",
     author="34j",
     url="https://github.com/34j/psd2pngs",

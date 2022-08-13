@@ -8,12 +8,13 @@ import concurrent.futures
 from logging import StreamHandler, getLogger, DEBUG
 import numpy as np
 import multiprocessing
+from .version import __version__
 
 CONTEXT_SETTINGS = dict(help_option_names=['-?', '-h', '--help'])
 
 
 @click.command(context_settings=CONTEXT_SETTINGS)
-@click.version_option('1.1.0', '-v', '--version', prog_name='psd2pngs')
+@click.version_option(__version__, '-v', '--version', prog_name='psd2pngs')
 @click.argument('psd_path', type=click.Path(exists=True))
 @click.option('--out-dir-path', '-o', type=click.Path(exists=True), default=None,
               help='Output directory path. If not specified, output to the same directory as the PSD file.')
