@@ -21,8 +21,11 @@ def save_some_layers(psd_path: Path, out_dir_path: Path, layer_indcies: Iterable
 
 
 def search_all_layers(layer: PSDImage, current_dir: Path, founds: list[LayerInfo] = []) -> Generator[LayerInfo, None, None]:
-    layer_safe_name = _get_safe_name(layer.name)
-    absolute_path = current_dir.joinpath(layer_safe_name)
+    absolute_path = current_dir
+    if layer.kind != 'psdimage':    
+        layer_safe_name = _get_safe_name(layer.name)
+        absolute_path = current_dir.joinpath(layer_safe_name)
+        
     is_group = layer.is_group()
     if not is_group:
         absolute_path = absolute_path.with_suffix('.png')
