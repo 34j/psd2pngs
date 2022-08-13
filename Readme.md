@@ -1,6 +1,4 @@
-# psd2pngs
-
-<span style="font-size: 300%;">[日本語の説明](#日本語の説明)</span>
+# psd2pngs [日本語の説明](#日本語の説明)
 
 psd2pngs is an application that converts psd files to png files while maintaining the layer hierarchy and performing the appropriate renaming.
 An onefile executable(.exe) file [`psd2pngs.exe`](https://github.com/34j/psd2pngs/releases) is also available here.
