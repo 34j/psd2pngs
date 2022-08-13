@@ -1,8 +1,13 @@
 from setuptools import setup, find_packages
-from psd2pngs import __version__
+from distutils.util import convert_path
+
+module_globals = {}
+with open(convert_path('psd2pngs/version.py')) as f:
+    exec(f.read(), module_globals)
+
 setup(
     name="psd2pngs",
-    version=__version__,
+    version=module_globals['__version__'],
     description="Convert a PSD file to PNG files.",
     author="34j",
     url="https://github.com/34j/psd2pngs",
