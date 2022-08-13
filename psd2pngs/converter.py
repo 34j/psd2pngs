@@ -8,7 +8,7 @@ import concurrent.futures
 from logging import StreamHandler, getLogger, DEBUG
 import numpy as np
 import multiprocessing
-from .version import __version__
+from psd2pngs.version import __version__
 
 CONTEXT_SETTINGS = dict(help_option_names=['-?', '-h', '--help'])
 

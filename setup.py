@@ -1,5 +1,5 @@
 from setuptools import setup, find_packages
-from .psd2pngs import __version__
+from psd2pngs import __version__
 setup(
     name="psd2pngs",
     version=__version__,
