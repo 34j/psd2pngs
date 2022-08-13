@@ -7,6 +7,7 @@ setup(
     author="34j",
     url="https://github.com/34j/psd2pngs",
     packages=find_packages(),
+    license='MIT',
     entry_points={
         "console_scripts": [
             "bin = psd2pngs.__main__:psd2pngs",
