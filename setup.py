@@ -7,7 +7,7 @@ setup(
     author="34j",
     url="https://github.com/34j/psd2pngs",
     packages=find_packages() + find_packages('psd2pngs'),
-    install_requires=['psd_tools', 'click', 'tqdm'],
+    install_requires=['psd_tools', 'click', 'tqdm', 'PIL'],
     license='MIT',
     entry_points={
         "console_scripts": [
