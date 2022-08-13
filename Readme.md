@@ -1,11 +1,11 @@
 # psd2pngs
 
-<span style="font-size: 200%;">[日本語の説明](#日本語の説明)</span>
+<span style="font-size: 300%;">[日本語の説明](#日本語の説明)</span>
 
 psd2pngs is an application that converts psd files to png files while maintaining the layer hierarchy and performing the appropriate renaming.
 An onefile executable(.exe) file [`psd2pngs.exe`](https://github.com/34j/psd2pngs/releases) is also available here.
 
-## Executable version (recommended)
+## Option 1. Executable version
 
 ### Installation
 
@@ -20,18 +20,20 @@ An onefile executable(.exe) file [`psd2pngs.exe`](https://github.com/34j/psd2png
 psd2pngs from.psd
 ```
 
-#### Compiling yourself
+## Option 2. Python version
 
 ```shell
-pip install click tqdm psd_tools
-pyinstaller psd2pngs.py --onefile
+py -m venv venv
+pip install git+https://github.com/34j/psd2pngs.git
+venv/Scripts/Activate.ps1
+psd2pngs from.psd
 ```
 
-## Python script
+## Option 3. Compile yourself
 
 ```shell
-pip install click tqdm psd_tools
-psd2pngs.py from.psd
+pip install pyinstaller
+pyinstaller __main__.py --onefile
 ```
 
 ## 日本語の説明
