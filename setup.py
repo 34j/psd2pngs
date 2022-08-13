@@ -6,7 +6,7 @@ setup(
     description="Convert a PSD file to PNG files.",
     author="34j",
     url="https://github.com/34j/psd2pngs",
-    packages=find_packages(),
+    packages=find_packages() + find_packages('psd2pngs'),
     license='MIT',
     entry_points={
         "console_scripts": [
