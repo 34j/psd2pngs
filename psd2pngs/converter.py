@@ -9,6 +9,7 @@ from logging import StreamHandler, getLogger, DEBUG
 import numpy as np
 import multiprocessing
 from psd2pngs.version import __version__
+multiprocessing.freeze_support()
 
 CONTEXT_SETTINGS = dict(help_option_names=['-?', '-h', '--help'])
 
@@ -112,8 +113,3 @@ def save_layer(image_size: tuple[int, int], layer_info: LayerInfo) -> None:
             with img_pil:
                 img.paste(img_pil, layer_info['layer'].offset)  # type: ignore
                 img.save(layer_info['absolute_path'])
-
-
-if __name__ == '__main__':
-    multiprocessing.freeze_support()
-    psd2pngs()
