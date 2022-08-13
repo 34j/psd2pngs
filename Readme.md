@@ -36,7 +36,19 @@ py -m venv venv
 "./venv/Scripts/Activate.bat"
 pip install git+https://github.com/34j/psd2pngs.git
 pip install pyinstaller
-pyinstaller __main__.py --onefile
+pyinstaller venv/Lib/site-packages/psd2pngs/__main__.py --onefile
+./dist/psd2pngs.exe from.psd
+```
+
+or
+
+```shell
+git clone https://github.com/34j/psd2pngs.git
+cd ./psd2pngs
+py -m venv venv
+"./venv/Scripts/Activate.bat"
+pip install pyinstaller
+pyinstaller psd2pngs/__main__.py --onefile
 ./dist/psd2pngs.exe from.psd
 ```
 
