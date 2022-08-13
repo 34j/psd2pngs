@@ -24,16 +24,20 @@ psd2pngs from.psd
 
 ```shell
 py -m venv venv
+"./venv/Scripts/Activate.bat"
 pip install git+https://github.com/34j/psd2pngs.git
-venv/Scripts/Activate.ps1
 psd2pngs from.psd
 ```
 
 ## Option 3. Compile yourself
 
 ```shell
+py -m venv venv
+"./venv/Scripts/Activate.bat"
+pip install git+https://github.com/34j/psd2pngs.git
 pip install pyinstaller
 pyinstaller __main__.py --onefile
+./dist/psd2pngs.exe from.psd
 ```
 
 ## 日本語の説明
