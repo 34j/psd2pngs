@@ -3,6 +3,7 @@ from PIL import Image
 from psd_tools import PSDImage
 from pathlib import Path
 from psd2pngs.version import __version__
+from tqdm import tqdm
 
 def _get_safe_name(name: str):
     return name.translate(str.maketrans('*\\/:?"<>| ', '-_________'))
@@ -13,10 +14,10 @@ class ImageLayerInfo(TypedDict):
     layer: PSDImage
 
 
-def save_some_layers(psd_path: Path, out_dir_path: Path, layer_indcies: Iterable[int]):
+def save_some_layers(psd_path: Path, out_dir_path: Path, layer_indcies: Iterable[int], pbar_position:int):
     psd = PSDImage.open(psd_path)
     layer_infos = list(search_all_layers(psd, out_dir_path))
-    for i in layer_indcies:
+    for i in tqdm(layer_indcies, position=pbar_position, desc=f'#{pbar_position}'):
         save_layer(psd.size, layer_infos[i])
 
 

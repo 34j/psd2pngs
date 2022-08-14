@@ -3,7 +3,7 @@ from typing import Optional
 from psd_tools import PSDImage
 from pathlib import Path
 import click
-from tqdm import tqdm
+from tqdm import tqdm, trange
 import concurrent.futures
 from logging import StreamHandler, getLogger, DEBUG
 import numpy as np
@@ -72,10 +72,10 @@ def psd2pngs(psd_path: str, out_dir_path: Optional[str] = None, single_process: 
                     i * n_layers_per_task,
                     np.min([(i + 1) * n_layers_per_task, n_layers]),
                 )
-                tasks.append(executor.submit(save_some_layers,
-                             psd_path_, out_dir_path_, indcies))
+                task = executor.submit(save_some_layers, psd_path_, out_dir_path_, indcies, i + 1)
+                tasks.append(task)
             [future.result() for future in tqdm(
-                concurrent.futures.as_completed(tasks), total=len(tasks), unit=' process(es)')]
+                concurrent.futures.as_completed(tasks), total=len(tasks), unit=' process(es)', position=0)]
     else:
         logger.info('Using single process...')
         pbar = tqdm(all_layers, unit='file(s)')
