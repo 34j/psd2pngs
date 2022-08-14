@@ -1,8 +1,8 @@
 # psd2pngs
 
-## Introduction
-
 [日本語の説明](#日本語の説明)
+
+## Introduction
 
 psd2pngs converts a psd file to png files while maintaining the layer hierarchy and performing the appropriate renaming, using multiprocessing.
 An onefile executable(.exe) file [`psd2pngs.exe`](https://github.com/34j/psd2pngs/releases) is also available.
@@ -10,10 +10,11 @@ An onefile executable(.exe) file [`psd2pngs.exe`](https://github.com/34j/psd2png
 ## Example
 
 ![Screenshot GIF](Example.gif)
+Note that this GIF is in fast forward.
 
 ## Usage
 
-- Just open `.psd` file with this app. (Executable version only.)
+- Just open `.psd` file with this app. ([Executable version](https://github.com/34j/psd2pngs/releases) only.)
 - Alternatively, this app can also be used with command prompt.
 
 ```shell
