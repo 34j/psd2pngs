@@ -81,7 +81,3 @@ def psd2pngs(psd_path: str, out_dir_path: Optional[str] = None, single_process: 
         pbar = tqdm(all_layers, unit='file(s)')
         for layer_info in pbar:
             save_layer(psd.size, layer_info)
-            
-    
-if __name__ == '__main__':
-    psd2pngs()

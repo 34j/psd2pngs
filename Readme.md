@@ -32,7 +32,7 @@ Options:
 
 ### Option 1. Executable version
 
-- Download the latest release from [Releases](https://github.com/34j/psd2pngs/releases).
+Download the latest release from [Releases](https://github.com/34j/psd2pngs/releases).
 
 ### Option 2. Python version using pip install
 
