@@ -30,11 +30,11 @@ Options:
 
 ## Installation
 
-## Option 1. Executable version
+### Option 1. Executable version
 
 - Download the latest release from [Releases](https://github.com/34j/psd2pngs/releases).
 
-## Option 2. Python version using pip install
+### Option 2. Python version using pip install
 
 ```shell
 py -m venv venv
@@ -43,7 +43,7 @@ pip install git+https://github.com/34j/psd2pngs.git
 psd2pngs from.psd
 ```
 
-## Option 3. Python version using git clone
+### Option 3. Python version using git clone
 
 ```shell
 git clone https://github.com/34j/psd2pngs.git
@@ -53,7 +53,7 @@ py -m venv venv
 python -m psd2pngs from.psd
 ```
 
-## Option 4. Executable version - Compiling yourself using pip
+### Option 4. Executable version - Compiling yourself using pip
 
 ```shell
 py -m venv venv
@@ -65,7 +65,7 @@ move "./dist/psd2pngs.exe" "./"
 ./psd2pngs from.psd
 ```
 
-## Option 5. Executable version - Compiling yourself using git
+### Option 5. Executable version - Compiling yourself using git
 
 ```shell
 git clone https://github.com/34j/psd2pngs.git
