@@ -53,7 +53,7 @@ py -m venv venv
 python -m psd2pngs from.psd
 ```
 
-## Option 3.Executable version - Compiling yourself
+## Option 4. Executable version - Compiling yourself using pip
 
 ```shell
 py -m venv venv
@@ -65,7 +65,7 @@ move "./dist/psd2pngs.exe" "./"
 ./psd2pngs from.psd
 ```
 
-or
+## Option 5. Executable version - Compiling yourself using git
 
 ```shell
 git clone https://github.com/34j/psd2pngs.git
