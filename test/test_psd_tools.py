@@ -22,5 +22,5 @@ class PsdToolsTest(TestCase):
         self.assertTrue(True)
         
     def open_task(self):
-        psd = PSDImage.open(r'E:\1.素材\琴葉葵立ち絵v01.09\test\test.psd')
+        psd = PSDImage.open(r'E:\1.素材\琴葉葵立ち絵v01.09\琴葉葵立ち絵v01.09.psd')
         name = psd.name
