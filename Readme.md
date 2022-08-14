@@ -50,6 +50,7 @@ git clone https://github.com/34j/psd2pngs.git
 cd ./psd2pngs
 py -m venv venv
 "./venv/Scripts/Activate.bat"
+pip install -r requirements.txt
 python -m psd2pngs from.psd
 ```
 
@@ -72,6 +73,7 @@ git clone https://github.com/34j/psd2pngs.git
 cd ./psd2pngs
 py -m venv venv
 "./venv/Scripts/Activate.bat"
+pip install -r requirements.txt
 pip install pyinstaller
 pyinstaller psd2pngs/__main__.py --onefile -n psd2pngs
 move "./dist/psd2pngs.exe" "./"
