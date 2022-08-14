@@ -47,7 +47,7 @@ def psd2pngs(psd_path: str, out_dir_path: Optional[str] = None, single_process: 
     # search all layers
     logger.info('Searching all layers...')
     all_layers = list(tqdm(search_all_layers(
-        psd, out_dir_path_, []), unit=' layer(s)'))
+        psd, out_dir_path_), unit=' layer(s)'))
 
     # save layers
     logger.info('Saving layers...')

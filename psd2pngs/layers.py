@@ -20,7 +20,7 @@ def save_some_layers(psd_path: Path, out_dir_path: Path, layer_indcies: Iterable
         save_layer(psd.size, layer_infos[i])
 
 
-def search_all_layers(layer: PSDImage, current_dir: Path, founds: list[LayerInfo] = []) -> Generator[LayerInfo, None, None]:
+def search_all_layers(layer: PSDImage, current_dir: Path) -> Generator[LayerInfo, None, None]:
     absolute_path = current_dir
     if layer.kind != 'psdimage':    
         layer_safe_name = _get_safe_name(layer.name)
