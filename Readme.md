@@ -10,6 +10,7 @@ An onefile executable(.exe) file [`psd2pngs.exe`](https://github.com/34j/psd2png
 ## Example
 
 ![Screenshot GIF](Example.gif)
+
 Note that this GIF is in fast forward.
 
 ## Usage
