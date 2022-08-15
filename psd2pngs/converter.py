@@ -11,7 +11,7 @@ import multiprocessing
 from psd2pngs.version import __version__
 from psd2pngs.layers import save_some_layers, search_all_layers, save_layer, get_layer_info
 import json
-
+import humps
 
 CONTEXT_SETTINGS = dict(help_option_names=['-?', '-h', '--help'])
 
@@ -25,14 +25,18 @@ CONTEXT_SETTINGS = dict(help_option_names=['-?', '-h', '--help'])
               help='Force not to use multiprocessing.')
 @click.option('--tasks-count', '-t', 'n_tasks', type=int, default=multiprocessing.cpu_count(),
               help=f'Number of tasks. Recommended to be less than or equal to the number of CPUs ({multiprocessing.cpu_count()}) because the process maximizes the use of CPUs.')
-@click.option('--json', '-j','use_json', is_flag=True, help='Output JSON file containing layer information.', )
-def psd2pngs(psd_path: str, out_dir_path: Optional[str] = None, single_process: bool = False, n_tasks=multiprocessing.cpu_count(), use_json: bool = False):
+@click.option('--json', '-j','use_json', is_flag=True, help='Output JSON file containing layer information in snake case.', )
+@click.option('--json-camel-case', '-jc', 'use_json_camel_case', is_flag=True, help='Output JSON file containing layer information in camel case.', )
+def psd2pngs(psd_path: str, out_dir_path: Optional[str] = None, single_process: bool = False, n_tasks=multiprocessing.cpu_count(), use_json: bool = False, use_json_camel_case: bool = False):
     psd_path_ = Path(psd_path).absolute()
     out_dir_path_ = psd_path_.parent
     if out_dir_path is not None:
         out_dir_path_ = Path(out_dir_path).absolute()
     if psd_path_.suffix != '.psd':
         raise ValueError('The suffix of psd_path must be .psd')
+    
+    if use_json and use_json_camel_case:
+        raise ValueError('Cannot use both --json and --json-camel-case.')
 
     psd = PSDImage.open(psd_path_)
 
@@ -52,11 +56,14 @@ def psd2pngs(psd_path: str, out_dir_path: Optional[str] = None, single_process: 
     all_layers = list(tqdm(search_all_layers(
         psd, out_dir_path_), unit=' layer(s) found'))
 
-    if use_json:
+    if use_json or use_json_camel_case:
         logger.info('Saving JSON file...')
         json_path = out_dir_path_.joinpath(psd_path_.stem + '.json')
+        layer_info = get_layer_info(psd)
+        if use_json_camel_case:
+            layer_info = humps.camelize(layer_info)
         with open(json_path, 'w') as f:
-            json.dump(get_layer_info(psd), f, indent=4, ensure_ascii=False)
+            json.dump(layer_info, f, indent=4, ensure_ascii=False)
 
     # save layers
     logger.info('Saving layers...')
