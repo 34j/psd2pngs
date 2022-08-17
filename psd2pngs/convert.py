@@ -47,7 +47,7 @@ def convert(psd_path: str, out_dir_path: Optional[str] = None, single_process: b
         layer_info = get_layer_info(psd)
         if use_json_camel_case:
             layer_info = humps.camelize(layer_info)
-        with open(json_path, 'w') as f:
+        with open(json_path, 'w', encoding='utf-8-sig') as f:
             json.dump(layer_info, f, indent=4, ensure_ascii=False)
 
     # save layers
