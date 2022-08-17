@@ -1,40 +1,25 @@
-from ntpath import join
 from typing import Optional
 from psd_tools import PSDImage
 from pathlib import Path
-import click
 from tqdm import tqdm
 import concurrent.futures
 from logging import StreamHandler, getLogger, DEBUG
 import numpy as np
 import multiprocessing
-from psd2pngs.version import __version__
-from psd2pngs.layers import save_some_layers, search_all_layers, save_layer, get_layer_info
+from psd2pngs.layer_save import save_some_layers, search_all_layers, save_layer
+from psd2pngs.layer_info import get_layer_info
 import json
 import humps
 
-CONTEXT_SETTINGS = dict(help_option_names=['-?', '-h', '--help'])
 
-
-@click.command(context_settings=CONTEXT_SETTINGS)
-@click.version_option(__version__, '-v', '--version', prog_name='psd2pngs')
-@click.argument('psd_path', type=click.Path(exists=True))
-@click.option('--out', '-o', 'out_dir_path', type=click.Path(exists=True), default=None,
-              help='Output directory path. If not specified, output to the same directory as the PSD file.')
-@click.option('--single-process', '-s', is_flag=True,
-              help='Force not to use multiprocessing.')
-@click.option('--tasks-count', '-t', 'n_tasks', type=int, default=multiprocessing.cpu_count(),
-              help=f'Number of tasks. Recommended to be less than or equal to the number of CPUs ({multiprocessing.cpu_count()}) because the process maximizes the use of CPUs.')
-@click.option('--json', '-j','use_json', is_flag=True, help='Output JSON file containing layer information in snake case.', )
-@click.option('--json-camel-case', '-jc', 'use_json_camel_case', is_flag=True, help='Output JSON file containing layer information in camel case.', )
-def psd2pngs(psd_path: str, out_dir_path: Optional[str] = None, single_process: bool = False, n_tasks=multiprocessing.cpu_count(), use_json: bool = False, use_json_camel_case: bool = False):
+def convert(psd_path: str, out_dir_path: Optional[str] = None, single_process: bool = False, n_tasks=multiprocessing.cpu_count(), use_json: bool = False, use_json_camel_case: bool = False):
     psd_path_ = Path(psd_path).absolute()
     out_dir_path_ = psd_path_.parent
     if out_dir_path is not None:
         out_dir_path_ = Path(out_dir_path).absolute()
     if psd_path_.suffix != '.psd':
         raise ValueError('The suffix of psd_path must be .psd')
-    
+
     if use_json and use_json_camel_case:
         raise ValueError('Cannot use both --json and --json-camel-case.')
 
