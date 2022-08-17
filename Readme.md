@@ -37,6 +37,30 @@ Options:
   -h, -?, --help             Show this message and exit.
 ```
 
+The type of content of Output JSON file (snake_case) is the following.
+
+```python
+class LayerInfo(TypedDict):
+    local_path: str
+    name: str
+    safe_name: str
+    is_visible: bool
+    is_group: bool
+    children: "Iterable[LayerInfo]"
+```
+
+The type of content of Output JSON file (camelCase) is the following.
+
+```python
+class LayerInfo(TypedDict):
+    localPath: str
+    name: str
+    safeName: str
+    isVisible: bool
+    isGroup: bool
+    children: "Iterable[LayerInfo]"
+```
+
 ## Installation
 
 ### Option 1. Executable version
