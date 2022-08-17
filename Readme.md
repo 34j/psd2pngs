@@ -28,9 +28,12 @@ Options:
                              to the same directory as the PSD file.
   -s, --single-process       Force not to use multiprocessing.
   -t, --tasks-count INTEGER  Number of tasks. Recommended to be less than or
-                             equal to the number of CPUs (32) because the
+                             equal to the number of CPUs (32) because the   
                              process maximizes the use of CPUs.
-  -j, --json                 Output JSON file containing layer information.
+  -j, --json                 Output JSON file containing layer information in
+                             snake case.
+  -jc, --json-camel-case     Output JSON file containing layer information in
+                             camel case.
   -h, -?, --help             Show this message and exit.
 ```
 
