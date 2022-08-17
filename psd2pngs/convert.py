@@ -12,7 +12,7 @@ import json
 import humps
 
 
-def convert(psd_path: str, out_dir_path: Optional[str] = None, single_process: bool = False, n_tasks=multiprocessing.cpu_count(), use_json: bool = False, use_json_camel_case: bool = False):
+def convert(psd_path: str, out_dir_path: Optional[str] = None, single_process: bool = False, n_tasks=multiprocessing.cpu_count(), use_json: bool = False, use_json_camel_case: bool = False, json_only = False):
     psd_path_ = Path(psd_path).absolute()
     out_dir_path_ = psd_path_.parent
     if out_dir_path is not None:
@@ -22,6 +22,9 @@ def convert(psd_path: str, out_dir_path: Optional[str] = None, single_process: b
 
     if use_json and use_json_camel_case:
         raise ValueError('Cannot use both --json and --json-camel-case.')
+    
+    if json_only and not (use_json or use_json_camel_case):
+        raise ValueError('Cannot use --json-only without --json or --json-camel-case.')
 
     psd = PSDImage.open(psd_path_)
 
@@ -49,6 +52,9 @@ def convert(psd_path: str, out_dir_path: Optional[str] = None, single_process: b
             layer_info = humps.camelize(layer_info)
         with open(json_path, 'w', encoding='utf-8-sig') as f:
             json.dump(layer_info, f, indent=4, ensure_ascii=False)
+    
+    if json_only:
+        return
 
     # save layers
     logger.info('Saving layers...')

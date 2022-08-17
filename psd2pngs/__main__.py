@@ -18,6 +18,7 @@ CONTEXT_SETTINGS = dict(help_option_names=['-?', '-h', '--help'])
               help=f'Number of tasks. Recommended to be less than or equal to the number of CPUs ({multiprocessing.cpu_count()}) because the process maximizes the use of CPUs.')
 @click.option('--json', '-j', 'use_json', is_flag=True, help='Output JSON file containing layer information in snake case.', )
 @click.option('--json-camel-case', '-jc', 'use_json_camel_case', is_flag=True, help='Output JSON file containing layer information in camel case.', )
+@click.option('--json-only', '-jo', 'json_only', is_flag=True, help='Output JSON file only.', )
 def psd2pngs(*args, **kwargs):
     convert(*args, **kwargs)
 
