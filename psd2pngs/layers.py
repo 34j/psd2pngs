@@ -54,6 +54,8 @@ def get_layer_info(layer: PSDImage, current_local_path: Path = Path('')) -> Laye
     children = []
     
     local_path = current_local_path
+    if not is_group:
+        local_path.with_suffix('.png')
     
     if layer.kind != 'psdimage':
         local_path = current_local_path.joinpath(_get_safe_name(layer.name))
