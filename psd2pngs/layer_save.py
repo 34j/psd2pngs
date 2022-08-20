@@ -5,8 +5,6 @@ from pathlib import Path
 from psd2pngs.safe_name import get_safe_name
 
 
-
-
 class ImageLayerInfo(TypedDict):
     absolute_path: Path
     layer: PSDImage
@@ -45,5 +43,3 @@ def save_some_layers(psd_path: Path, out_dir_path: Path, layer_indcies: Iterable
     layer_infos = list(search_all_layers(psd, out_dir_path))
     for i in layer_indcies:
         save_layer(psd.size, layer_infos[i])
-
-
