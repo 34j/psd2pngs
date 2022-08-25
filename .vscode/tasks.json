@@ -1,0 +1,148 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+        {
+            "type": "shell",
+            "label": "mytask.autoflake.removeUnusedImports",
+            "command": "${command:python.interpreterPath}\\..\\Activate.ps1\r\n",
+            "args": [
+                "autoflake",
+                "-i",
+                "--remove-all-unused-imports",
+                "${file}"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "dedicated",
+                "showReuseMessage": false,
+                "clear": false,
+                "close": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "mytask.pytest.currentfile",
+            "command": "${command:python.interpreterPath}\\..\\Activate.ps1\r\n",
+            "args": [
+                "pytest",
+                "-v",
+                "-s",
+                "--durations=0",
+                "${file}"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "showReuseMessage": false,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "mytask.unittest.currentfile",
+            "command": "${command:python.interpreterPath}\\..\\Activate.ps1\r\n",
+            "args": [
+                "unittest",
+                "-v",
+                "${file}"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "dedicated",
+                "showReuseMessage": false,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "mytask.pprofile.currentfile",
+            "command": "${command:python.interpreterPath}\\..\\Activate.ps1\r\n",
+            "args": [
+                "pprofile",
+                "${file}"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "dedicated",
+                "showReuseMessage": false,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "mytask.kernprof.currentfile",
+            "command": "${command:python.interpreterPath}\\..\\Activate.ps1\r\n",
+            "args": [
+                "kernprof",
+                "${file}"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "dedicated",
+                "showReuseMessage": false,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "mytask.trace.currentfile",
+            "command": "${command:python.interpreterPath}\\..\\Activate.ps1\r\n",
+            "args": [
+                "trace",
+                "--trace",
+                "--ignore-module",
+                "${file}"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "dedicated",
+                "showReuseMessage": false,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "mytask.countlineslinux",
+            "command": "find",
+            "args": [
+                "./*",
+                "-name",
+                "'*.py'",
+                "-not",
+                "-path",
+                "\"./crypto/*\"",
+                "|",
+                "xargs",
+                "wc",
+                "-l"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "dedicated",
+                "showReuseMessage": false,
+                "clear": false
+            },
+            "problemMatcher": []
+        }
+    ]
+}

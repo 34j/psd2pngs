@@ -13,7 +13,7 @@ class LayerInfo(TypedDict):
     children: "Iterable[LayerInfo]"
 
 
-def get_layer_info(layer: PSDImage, current_local_path: Path = Path('')) -> LayerInfo:
+def get_layer_info(layer: PSDImage, current_local_path: Path = Path("")) -> LayerInfo:
     name = layer.name
     safe_name = get_safe_name(name)
     is_visible = layer.is_visible()
@@ -22,13 +22,20 @@ def get_layer_info(layer: PSDImage, current_local_path: Path = Path('')) -> Laye
 
     local_path = current_local_path
 
-    if layer.kind != 'psdimage':
+    if layer.kind != "psdimage":
         local_path = current_local_path.joinpath(get_safe_name(layer.name))
 
         if not is_group:
-            local_path = local_path.with_suffix('.png')
+            local_path = local_path.with_suffix(".png")
 
     if is_group:
         children = [get_layer_info(child, local_path) for child in layer]
 
-    return LayerInfo(local_path=str(local_path), name=name, safe_name=safe_name, is_visible=is_visible, is_group=is_group, children=children)
+    return LayerInfo(
+        local_path=str(local_path),
+        name=name,
+        safe_name=safe_name,
+        is_visible=is_visible,
+        is_group=is_group,
+        children=children,
+    )
