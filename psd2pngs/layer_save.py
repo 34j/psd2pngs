@@ -4,7 +4,7 @@ from PIL import Image
 from psd_tools import PSDImage
 from pathlib import Path
 from psd2pngs.safe_name import get_safe_name
-from psd_tools.api.layers import Layer
+from psd_tools.api.layers import Layer, Group, PixelLayer
 
 
 class ImageLayerInfo(TypedDict):
@@ -41,28 +41,32 @@ def search_all_layers(
     Yields
     ------
     Generator[ImageLayerInfo, None, None]
-        _description_
+        ImageLayerInfos for all layers.
     """
-    absolute_path = current_absolute_path
-    if layer.kind != "Layer":
+    
+    # avoid to create 'Root' folder because it is just disruptive
+    if layer.kind == "psdimage":    
+        absolute_path = current_absolute_path
+    else:
         layer_safe_name = get_safe_name(layer.name)
         absolute_path = current_absolute_path.joinpath(layer_safe_name)
 
-    is_group = layer.is_group()
-    if not is_group:
-        absolute_path = absolute_path.with_suffix(".png")
-
-    if is_group:
+    if layer.is_group():
+        # create folder for group
         absolute_path.mkdir(parents=True, exist_ok=True)
+        
+        # recursively get all ImageLayerInfos for all children
         for child in layer:  # type: ignore
-            for child_found in search_all_layers(child, absolute_path):
-                yield child_found
+            yield from search_all_layers(child, absolute_path)
     else:
+        # add suffix
+        absolute_path = absolute_path.with_suffix(".png")
+        # yield ImageLayerInfo
         yield ImageLayerInfo(absolute_path=absolute_path, layer=layer)
 
 
 def save_layer(image_size: tuple[int, int], layer_info: ImageLayerInfo) -> None:
-    """Save the given layer (layer_info['layer']) to the given path (layer_info['absolute_path']).
+    """Save the given layer (layer_info['layer']) to the given path (layer_info['absolute_path']) using PIL.
 
     Parameters
     ----------
@@ -71,16 +75,21 @@ def save_layer(image_size: tuple[int, int], layer_info: ImageLayerInfo) -> None:
     layer_info : ImageLayerInfo
         The layer and absolute path to save the layer to.
     """
+    # make sure that the size and position of the layer is maintained
     with Image.new("RGBA", image_size, (0, 0, 0, 0)) as img:
+        # covert to PIL.Image
         img_pil = layer_info["layer"].topil()
         if img_pil is not None:
             with img_pil:
+                # paste the layer onto the image to maintain the position
                 img.paste(img_pil, layer_info["layer"].offset)  # type: ignore
                 img.save(layer_info["absolute_path"])
 
 
 def save_some_layers(psd_path: Path, out_dir_path: Path, layer_indcies: Iterable[int]):
     """Open the PSD file and save the given layers to the given path.
+    The expected use case of this function is to use as a multiprocessing function.
+    (Because heavy layers do not have to be pickled.)
 
     Parameters
     ----------
@@ -91,7 +100,12 @@ def save_some_layers(psd_path: Path, out_dir_path: Path, layer_indcies: Iterable
     layer_indcies : Iterable[int]
         Indcies (for search_all_layers()) of the layers to save.
     """
+    # open the PSD file
     psd = PSDImage.open(psd_path)
-    layer_infos = list(search_all_layers(psd, out_dir_path))
+
+    # search layers
+    image_layer_infos = list(search_all_layers(psd, out_dir_path))
+
+    # save specified layers
     for i in layer_indcies:
-        save_layer(psd.size, layer_infos[i])
+        save_layer(psd.size, image_layer_infos[i])

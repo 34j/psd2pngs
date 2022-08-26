@@ -21,7 +21,8 @@ def convert(
     use_json_camel_case: bool = False,
     json_only=False,
 ):
-    """Convert a PSD file to multiple PNG files .
+    """Convert a PSD file to multiple PNG files. 
+    When multiprocessing, since pickling Layers are very slow, each process will open the PSD file separately.
 
     Parameters
     ----------
@@ -49,6 +50,7 @@ def convert(
     ValueError
         Raises if use_json and use_json_camel_case are both False but json_only is True.
     """
+    # Check paths
     psd_path_ = Path(psd_path).absolute()
     out_dir_path_ = psd_path_.parent
     if out_dir_path is not None:
@@ -56,17 +58,20 @@ def convert(
     if psd_path_.suffix != ".psd":
         raise ValueError("The suffix of psd_path must be .psd")
 
+    # Check json options
     if use_json and use_json_camel_case:
         raise ValueError("Cannot use both --json and --json-camel-case.")
-
     if json_only and not (use_json or use_json_camel_case):
         raise ValueError("Cannot use --json-only without --json or --json-camel-case.")
 
+    # Open the PSD file
     psd = PSDImage.open(psd_path_)
 
+    # Create output directory
     out_dir_path_ = out_dir_path_.joinpath(psd_path_.stem)
     out_dir_path_.mkdir(parents=True, exist_ok=True)
 
+    # Get and configure logger
     logger = getLogger(__name__)
     logger.addHandler(StreamHandler())
     logger.setLevel(DEBUG)
@@ -81,12 +86,13 @@ def convert(
         tqdm(search_all_layers(psd, out_dir_path_), unit=" layer(s) found")
     )
 
+    # save json files
     if use_json or use_json_camel_case:
         logger.info("Saving JSON file...")
         json_path = out_dir_path_.joinpath(psd_path_.stem + ".json")
         layer_info = get_layer_info(psd)
         if use_json_camel_case:
-            layer_info = humps.camelize(layer_info)
+            layer_info = humps.camelize(layer_info) # type: ignore
         with open(json_path, "w", encoding="utf-8") as f:
             json.dump(layer_info, f, indent=4, ensure_ascii=False)
 
@@ -97,19 +103,28 @@ def convert(
     logger.info("Saving layers...")
 
     if not single_process:
+        # Use multiprocessing
         logger.info("Using multiprocessing...")
         with concurrent.futures.ProcessPoolExecutor() as executor:
             tasks = []
+            
+            # Calculate the number of layers that should be processed per task
             n_layers = len(all_layers)
             n_layers_per_task = np.ceil(n_layers / n_tasks).astype(int)
+            
             for i in range(n_tasks):
+                # Calculate the indcies of the layers that should be processed in this task
                 indcies = range(
                     i * n_layers_per_task,
                     np.min([(i + 1) * n_layers_per_task, n_layers]),
                 )
+                
+                # Create and append task
                 tasks.append(
                     executor.submit(save_some_layers, psd_path_, out_dir_path_, indcies)
                 )
+                
+            # Wait for all tasks to finish. As soon as one task finishes, tqdm progress bar will update.
             [
                 future.result()
                 for future in tqdm(
@@ -119,7 +134,8 @@ def convert(
                 )
             ]
     else:
+        # Use single process
         logger.info("Using single process...")
-        pbar = tqdm(all_layers, unit="file(s)")
-        for layer_info in pbar:
+        
+        for layer_info in tqdm(all_layers, unit="file(s)"):
             save_layer(psd.size, layer_info)
