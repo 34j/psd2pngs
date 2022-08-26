@@ -4,12 +4,13 @@
         {
             "type": "shell",
             "label": "mytask.autoflake.removeUnusedImports",
-            "command": "${command:python.interpreterPath}\\..\\Activate.ps1\r\n",
+            "command": "${command:python.interpreterPath}",
             "args": [
+                "-m",
                 "autoflake",
                 "-i",
                 "--remove-all-unused-imports",
-                "${file}"
+                "'${file}'",
             ],
             "presentation": {
                 "echo": true,
@@ -18,14 +19,37 @@
                 "panel": "dedicated",
                 "showReuseMessage": false,
                 "clear": false,
-                "close": true
+                "close": false,
+            },
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "mytask.autoflake.removeUnusedImportsAll",
+            "command":  "${command:python.interpreterPath}",
+            "args": [
+                "-m",
+                "autoflake",
+                "-i",
+                "--remove-all-unused-imports",
+                "-r",
+                "./psd2pngs",
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "dedicated",
+                "showReuseMessage": false,
+                "clear": false,
+                "close": true,
             },
             "problemMatcher": []
         },
         {
             "type": "shell",
             "label": "mytask.pytest.currentfile",
-            "command": "${command:python.interpreterPath}\\..\\Activate.ps1\r\n",
+            "command": "${command:python.interpreterPath}\\..\\activate\r\n",
             "args": [
                 "pytest",
                 "-v",
@@ -46,7 +70,7 @@
         {
             "type": "shell",
             "label": "mytask.unittest.currentfile",
-            "command": "${command:python.interpreterPath}\\..\\Activate.ps1\r\n",
+            "command": "${command:python.interpreterPath}\\..\\activate\r\n",
             "args": [
                 "unittest",
                 "-v",
@@ -62,87 +86,5 @@
             },
             "problemMatcher": []
         },
-        {
-            "type": "shell",
-            "label": "mytask.pprofile.currentfile",
-            "command": "${command:python.interpreterPath}\\..\\Activate.ps1\r\n",
-            "args": [
-                "pprofile",
-                "${file}"
-            ],
-            "presentation": {
-                "echo": true,
-                "reveal": "silent",
-                "focus": false,
-                "panel": "dedicated",
-                "showReuseMessage": false,
-                "clear": false
-            },
-            "problemMatcher": []
-        },
-        {
-            "type": "shell",
-            "label": "mytask.kernprof.currentfile",
-            "command": "${command:python.interpreterPath}\\..\\Activate.ps1\r\n",
-            "args": [
-                "kernprof",
-                "${file}"
-            ],
-            "presentation": {
-                "echo": true,
-                "reveal": "silent",
-                "focus": false,
-                "panel": "dedicated",
-                "showReuseMessage": false,
-                "clear": false
-            },
-            "problemMatcher": []
-        },
-        {
-            "type": "shell",
-            "label": "mytask.trace.currentfile",
-            "command": "${command:python.interpreterPath}\\..\\Activate.ps1\r\n",
-            "args": [
-                "trace",
-                "--trace",
-                "--ignore-module",
-                "${file}"
-            ],
-            "presentation": {
-                "echo": true,
-                "reveal": "silent",
-                "focus": false,
-                "panel": "dedicated",
-                "showReuseMessage": false,
-                "clear": false
-            },
-            "problemMatcher": []
-        },
-        {
-            "type": "shell",
-            "label": "mytask.countlineslinux",
-            "command": "find",
-            "args": [
-                "./*",
-                "-name",
-                "'*.py'",
-                "-not",
-                "-path",
-                "\"./crypto/*\"",
-                "|",
-                "xargs",
-                "wc",
-                "-l"
-            ],
-            "presentation": {
-                "echo": true,
-                "reveal": "silent",
-                "focus": false,
-                "panel": "dedicated",
-                "showReuseMessage": false,
-                "clear": false
-            },
-            "problemMatcher": []
-        }
     ]
 }
