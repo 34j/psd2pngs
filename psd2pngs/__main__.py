@@ -4,10 +4,10 @@ import multiprocessing
 import click
 
 
-CONTEXT_SETTINGS = dict(help_option_names=["-?", "-h", "--help"])
+_CONTEXT_SETTINGS = dict(help_option_names=["-?", "-h", "--help"])
 
 
-@click.command(context_settings=CONTEXT_SETTINGS)
+@click.command(context_settings=_CONTEXT_SETTINGS)
 @click.version_option(__version__, "-v", "--version", prog_name="psd2pngs")
 @click.argument("psd_path", type=click.Path(exists=True))
 @click.option(
@@ -51,10 +51,12 @@ CONTEXT_SETTINGS = dict(help_option_names=["-?", "-h", "--help"])
     help="Output JSON file only.",
 )
 def psd2pngs(*args, **kwargs):
+    """This function should be called from the command line."""
     convert(*args, **kwargs)
 
 
-# this should be called HERE
-if __name__ == "__main__":  # for pyinstaller to work
+# This seems to be obvious, but without this, the program will loop infinitely when multiprocessing is used.
+if __name__ == "__main__":
+    # For pyinstaller to work when multiprocessing is used. This should be called HERE, not anywhere else.
     multiprocessing.freeze_support()
     psd2pngs()

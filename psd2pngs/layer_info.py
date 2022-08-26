@@ -5,6 +5,8 @@ from pathlib import Path
 
 
 class LayerInfo(TypedDict):
+    """Layer information."""
+
     local_path: str
     name: str
     safe_name: str
@@ -14,6 +16,20 @@ class LayerInfo(TypedDict):
 
 
 def get_layer_info(layer: PSDImage, current_local_path: Path = Path("")) -> LayerInfo:
+    """Get LayerInfo for the given layer. Recursively get LayerInfo for all children.
+
+    Parameters
+    ----------
+    layer : PSDImage
+        The base layer.
+    current_local_path : Path, optional
+        The base path to use for LayerInfo["local_path"], by default Path("")
+
+    Returns
+    -------
+    LayerInfo
+        The LayerInfo for the given layer.
+    """
     name = layer.name
     safe_name = get_safe_name(name)
     is_visible = layer.is_visible()

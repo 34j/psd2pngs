@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Union
 from psd_tools import PSDImage
 from pathlib import Path
 from tqdm import tqdm
@@ -13,14 +13,42 @@ import humps
 
 
 def convert(
-    psd_path: str,
-    out_dir_path: Optional[str] = None,
+    psd_path: Union[str, Path],
+    out_dir_path: Optional[Union[str, Path]] = None,
     single_process: bool = False,
     n_tasks=multiprocessing.cpu_count(),
     use_json: bool = False,
     use_json_camel_case: bool = False,
     json_only=False,
 ):
+    """Convert a PSD file to multiple PNG files .
+
+    Parameters
+    ----------
+    psd_path : str
+        Path to the PSD file.
+    out_dir_path : Optional[str], optional
+        Output directory, by default None
+    single_process : bool, optional
+        Do not use multiprocessing, by default False
+    n_tasks : _type_, optional
+        Number of tasks when multiprocessing is used, by default multiprocessing.cpu_count() (Number of CPU Threads)
+    use_json : bool, optional
+        Whether to output a json file (snake_case), by default False
+    use_json_camel_case : bool, optional
+        Whether to output a json file (camelCase), by default False
+    json_only : bool, optional
+        Only generates a json file and do not convert the file, by default False
+
+    Raises
+    ------
+    ValueError
+        Raises if the suffix of the PSD file is not ".psd".
+    ValueError
+        Raises if use_json and use_json_camel_case are both True.
+    ValueError
+        Raises if use_json and use_json_camel_case are both False but json_only is True.
+    """
     psd_path_ = Path(psd_path).absolute()
     out_dir_path_ = psd_path_.parent
     if out_dir_path is not None:
