@@ -30,5 +30,3 @@ python:
       path: .
       extra_requirements:
         - myst_parser
-    - method: setuptools
-      path: package
