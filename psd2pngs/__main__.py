@@ -1,4 +1,4 @@
-from psd2pngs.convert import convert
+from psd2pngs.convertion import convert
 from psd2pngs.version import __version__
 import multiprocessing
 import click
