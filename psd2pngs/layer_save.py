@@ -1,10 +1,10 @@
 from typing import NamedTuple, Union
-from typing import Generator, Iterable, TypedDict
+from typing import Generator, Iterable
 from PIL import Image
 from psd_tools import PSDImage
 from pathlib import Path
 from psd2pngs.safe_name import get_safe_name
-from psd_tools.api.layers import Layer, Group, PixelLayer
+from psd_tools.api.layers import Layer
 
 
 class ImageLayerInfo(NamedTuple):

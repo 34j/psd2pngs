@@ -1,4 +1,4 @@
-from typing import Iterable, NamedTuple, TypedDict
+from typing import Iterable, NamedTuple
 from psd_tools import PSDImage
 from psd2pngs.safe_name import get_safe_name
 from pathlib import Path
