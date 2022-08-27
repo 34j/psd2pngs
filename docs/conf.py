@@ -12,7 +12,7 @@ sys.path.insert(
     0, os.path.join(os.path.dirname(os.path.dirname(__file__)))
 )
 
-from psd2pngs import __version__
+from psd2pngs.version import __version__
 
 project = "psd2pngs"
 copyright = "2022, 34j and contributors"
