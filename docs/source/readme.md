@@ -1,6 +1,4 @@
-# psd2pngs
-
-[日本語の説明](#日本語の説明)
+# User Guide
 
 ## Introduction
 
@@ -118,16 +116,3 @@ pyinstaller psd2pngs/__main__.py --onefile -n psd2pngs
 move "./dist/psd2pngs.exe" "./"
 ./psd2pngs from.psd
 ```
-
-## 日本語の説明
-
-psd2pngsは、psdファイルをレイヤーの階層構造を維持したままpngファイルに変換し、適切なリネームを行うアプリケーションです。
-1ファイルにまとまったWindows用実行ファイル[`psd2pngs.exe`](https://github.com/34j/psd2pngs/releases)も配布しています。
-
-### インストール方法
-
-- [Releases](https://github.com/34j/psd2pngs/releases)から最新のリリースをダウンロードします。
-
-### 使い方
-
-- psdファイルを右クリックし、`プログラムから開く`を使ってこのアプリで開きます。

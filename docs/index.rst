@@ -8,9 +8,18 @@ Welcome to psd2pngs's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: User Guide:
 
-   modules
+   source/readme
+
+API Reference
+==================
+
+.. toctree::
+   :maxdepth: 2
+   :caption: API Reference:
+
+   source/psd2pngs
 
 Indices and tables
 ==================

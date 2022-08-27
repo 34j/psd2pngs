@@ -1,13 +1,18 @@
 psd2pngs package
 ================
 
+.. automodule:: psd2pngs
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Submodules
 ----------
 
-psd2pngs.convert module
------------------------
+psd2pngs.convertion module
+--------------------------
 
-.. automodule:: psd2pngs.convert
+.. automodule:: psd2pngs.convertion
    :members:
    :undoc-members:
    :show-inheritance:
@@ -48,14 +53,6 @@ psd2pngs.version module
 -----------------------
 
 .. automodule:: psd2pngs.version
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: psd2pngs
    :members:
    :undoc-members:
    :show-inheritance:
