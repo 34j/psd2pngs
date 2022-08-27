@@ -23,8 +23,12 @@ release = __version__
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
-
-extensions = ["sphinx.ext.napoleon", "sphinx.ext.autodoc", 'sphinx.ext.viewcode']
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.txt': 'markdown',
+    '.md': 'markdown',
+}
+extensions = ["sphinx.ext.napoleon", "sphinx.ext.autodoc", 'sphinx.ext.viewcode', 'myst_parser']
 napoleon_google_docstring = False
 
 templates_path = ["_templates"]
