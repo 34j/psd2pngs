@@ -1,10 +1,10 @@
-from typing import Iterable, TypedDict
+from typing import Iterable, NamedTuple, TypedDict
 from psd_tools import PSDImage
 from psd2pngs.safe_name import get_safe_name
 from pathlib import Path
 
 
-class LayerInfo(TypedDict):
+class LayerInfo(NamedTuple):
     """Layer information."""
     local_path: str
     """The local path to the layer. The file name is safe_name.png."""

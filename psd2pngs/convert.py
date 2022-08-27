@@ -11,6 +11,8 @@ from psd2pngs.layer_info import get_layer_info
 import json
 import humps
 
+from psd2pngs.unpack import unpack_nested_namedtuple
+
 
 def convert(
     psd_path: Union[str, Path],
@@ -21,7 +23,7 @@ def convert(
     use_json_camel_case: bool = False,
     json_only=False,
 ):
-    """Convert a PSD file to multiple PNG files. 
+    """Convert a PSD file to multiple PNG files.
     When multiprocessing, since pickling Layers are very slow, each process will open the PSD file separately.
 
     Parameters
@@ -90,9 +92,9 @@ def convert(
     if use_json or use_json_camel_case:
         logger.info("Saving JSON file...")
         json_path = out_dir_path_.joinpath(psd_path_.stem + ".json")
-        layer_info = get_layer_info(psd)
+        layer_info = unpack_nested_namedtuple(get_layer_info(psd))
         if use_json_camel_case:
-            layer_info = humps.camelize(layer_info) # type: ignore
+            layer_info = humps.camelize(layer_info)  # type: ignore
         with open(json_path, "w", encoding="utf-8") as f:
             json.dump(layer_info, f, indent=4, ensure_ascii=False)
 
@@ -107,23 +109,23 @@ def convert(
         logger.info("Using multiprocessing...")
         with concurrent.futures.ProcessPoolExecutor() as executor:
             tasks = []
-            
+
             # Calculate the number of layers that should be processed per task
             n_layers = len(all_layers)
             n_layers_per_task = np.ceil(n_layers / n_tasks).astype(int)
-            
+
             for i in range(n_tasks):
                 # Calculate the indcies of the layers that should be processed in this task
                 indcies = range(
                     i * n_layers_per_task,
                     np.min([(i + 1) * n_layers_per_task, n_layers]),
                 )
-                
+
                 # Create and append task
                 tasks.append(
                     executor.submit(save_some_layers, psd_path_, out_dir_path_, indcies)
                 )
-                
+
             # Wait for all tasks to finish. As soon as one task finishes, tqdm progress bar will update.
             [
                 future.result()
@@ -136,6 +138,6 @@ def convert(
     else:
         # Use single process
         logger.info("Using single process...")
-        
+
         for layer_info in tqdm(all_layers, unit="file(s)"):
             save_layer(psd.size, layer_info)

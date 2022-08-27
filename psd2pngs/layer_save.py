@@ -1,4 +1,4 @@
-from typing import Union
+from typing import NamedTuple, Union
 from typing import Generator, Iterable, TypedDict
 from PIL import Image
 from psd_tools import PSDImage
@@ -7,7 +7,7 @@ from psd2pngs.safe_name import get_safe_name
 from psd_tools.api.layers import Layer, Group, PixelLayer
 
 
-class ImageLayerInfo(TypedDict):
+class ImageLayerInfo(NamedTuple):
     """Layer and
 
     Parameters
@@ -78,12 +78,12 @@ def save_layer(image_size: tuple[int, int], layer_info: ImageLayerInfo) -> None:
     # make sure that the size and position of the layer is maintained
     with Image.new("RGBA", image_size, (0, 0, 0, 0)) as img:
         # covert to PIL.Image
-        img_pil = layer_info["layer"].topil()
+        img_pil = layer_info.layer.topil()
         if img_pil is not None:
             with img_pil:
                 # paste the layer onto the image to maintain the position
-                img.paste(img_pil, layer_info["layer"].offset)  # type: ignore
-                img.save(layer_info["absolute_path"])
+                img.paste(img_pil, layer_info.layer.offset)  # type: ignore
+                img.save(layer_info.absolute_path)
 
 
 def save_some_layers(psd_path: Path, out_dir_path: Path, layer_indcies: Iterable[int]):

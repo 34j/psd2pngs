@@ -40,7 +40,7 @@ Options:
 The type of content of Output JSON file (snake_case) is the following.
 
 ```python
-class LayerInfo(TypedDict):
+class LayerInfo(NamedTuple):
     local_path: str
     name: str
     safe_name: str
@@ -52,7 +52,7 @@ class LayerInfo(TypedDict):
 The type of content of Output JSON file (camelCase) is the following.
 
 ```python
-class LayerInfo(TypedDict):
+class LayerInfo(NamedTuple):
     localPath: str
     name: str
     safeName: str
