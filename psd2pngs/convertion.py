@@ -18,7 +18,7 @@ def convert(
     psd_path: Union[str, Path],
     out_dir_path: Optional[Union[str, Path]] = None,
     single_process: bool = False,
-    n_tasks=multiprocessing.cpu_count(),
+    n_tasks: int = multiprocessing.cpu_count(),
     use_json: bool = False,
     use_json_camel_case: bool = False,
     json_only: bool = False,
