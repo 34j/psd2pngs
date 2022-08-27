@@ -4,7 +4,7 @@
 [![PyPI](https://img.shields.io/pypi/dm/psd2pngs?style=for-the-badge)](https://pypi.org/project/psd2pngs/)
 [![PyPI](https://img.shields.io/pypi/status/psd2pngs?style=for-the-badge)](https://pypi.org/project/psd2pngs/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/psd2pngs?style=for-the-badge)](https://pypi.org/project/psd2pngs/)
-[![Read the Docs](https://img.shields.io/readthedocs/psd2pngs?label=Read%20the%20Docs%20%28Click%20Here%29&style=for-the-badge))](https://psd2pngs.readthedocs.io/)
+[![Read the Docs](https://img.shields.io/readthedocs/psd2pngs?label=Read%20the%20Docs%20%28Click%20Here%29&style=for-the-badge)](https://psd2pngs.readthedocs.io/)
 [![Contributors](https://img.shields.io/github/contributors/34j/psd2pngs?style=for-the-badge)](https://github.com/34j/psd2pngs/graphs/contributors)
 [![Japanese Explanation](https://img.shields.io/badge/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%81%AE%E8%AA%AC%E6%98%8E-passing-blue?style=for-the-badge)](#日本語の説明)
 
