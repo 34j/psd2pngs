@@ -34,7 +34,7 @@ def convert(
         Output directory, by default None
     single_process : bool, optional
         Do not use multiprocessing, by default False
-    n_tasks : _type_, optional
+    n_tasks : int, optional
         Number of tasks when multiprocessing is used, by default multiprocessing.cpu_count() (Number of CPU Threads)
     use_json : bool, optional
         Whether to output a json file (snake_case), by default False
