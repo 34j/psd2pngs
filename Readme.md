@@ -7,7 +7,7 @@
 ## Introduction
 
 psd2pngs converts a psd file to png files while maintaining the layer hierarchy and performing the appropriate renaming, using multiprocessing.
-An onefile executable(.exe) file [`psd2pngs.exe`](https://github.com/34j/psd2pngs/releases) is also available.
+You do not have to read this long docs, just download [![Executable](https://img.shields.io/badge/psd2pngs.exe-Click-darkblue)](https://github.com/34j/psd2pngs/releases) and open a psd file with it!
 
 ## Example
 
