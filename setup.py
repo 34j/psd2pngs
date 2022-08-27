@@ -13,10 +13,18 @@ setup(
     url="https://github.com/34j/psd2pngs",
     packages=find_packages("psd2pngs"),
     install_requires=["psd_tools", "click", "tqdm", "pillow", "pyhumps"],
-    license="MIT",
+    license="MIT License",
     entry_points={
         "console_scripts": [
             "psd2pngs = psd2pngs.__main__:psd2pngs",
         ],
     },
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+        "Natural Language :: English",
+        "Topic :: Multimedia :: Graphics :: Graphics Conversion",
+        "Intended Audience :: End Users/Desktop",
+    ],
 )
