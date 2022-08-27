@@ -26,8 +26,9 @@ sphinx:
 # Optionally declare the Python requirements required to build your docs
 python:
    install:
-   - extra_requirements: 
-     - myst_parser
-   - method: pip
-     path: .
-   system_packages: true
+    - method: pip
+      path: .
+      extra_requirements:
+        - myst_parser
+    - method: setuptools
+      path: package
