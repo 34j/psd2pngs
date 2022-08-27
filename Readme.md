@@ -1,6 +1,6 @@
 # psd2pngs
 
-[![Licence](https://img.shields.io/github/license/34j/psd2pngs?style=for-the-badge)](./LICENSE)
+[![Licence](https://img.shields.io/github/license/34j/psd2pngs?style=for-the-badge)](./License.txt)
 [![PyPI](https://img.shields.io/pypi/dm/psd2pngs?style=for-the-badge)](https://pypi.org/project/psd2pngs/)
 [![PyPI](https://img.shields.io/pypi/status/psd2pngs?style=for-the-badge)](https://pypi.org/project/psd2pngs/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/psd2pngs?style=for-the-badge)](https://pypi.org/project/psd2pngs/)
