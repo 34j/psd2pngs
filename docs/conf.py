@@ -5,18 +5,26 @@
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
+import os
+import sys
+
+sys.path.insert(
+    0, os.path.join(os.path.dirname(os.path.dirname(__file__)))
+)
+
+from psd2pngs import __version__
 
 project = "psd2pngs"
 copyright = "2022, 34j and contributors"
 author = "34j and contributors"
-release = "1.2.0"
+version = __version__
+release = __version__
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ["sphinx.ext.napoleon", "sphinx.ext.autodoc", "sphinx.ext.autosummary"]
+extensions = ["sphinx.ext.napoleon", "sphinx.ext.autodoc", 'sphinx.ext.viewcode']
 napoleon_google_docstring = False
-autosummary_generate = True
 
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
@@ -27,3 +35,10 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 html_theme = "default"
 html_static_path = ["_static"]
+html_context = dict(
+    display_github=True,
+    github_user="34j",
+    github_repo="psd2pngs",
+    github_version="main",
+    conf_py_path="/docs/",
+)
