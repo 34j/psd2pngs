@@ -16,7 +16,7 @@ setup(
     install_requires=["psd_tools", "click", "tqdm", "pillow", "pyhumps"],
     license="MIT",
     python_requires='>=3.9',
-    long_description=Path("README.md").read_text(encoding="utf-8"),
+    long_description=(Path(__file__).parent / "Readme.md").read_text(encoding="utf-8"),
     long_description_content_type="text/markdown",
     entry_points={
         "console_scripts": [
