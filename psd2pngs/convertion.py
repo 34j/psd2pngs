@@ -21,7 +21,7 @@ def convert(
     n_tasks=multiprocessing.cpu_count(),
     use_json: bool = False,
     use_json_camel_case: bool = False,
-    json_only=False,
+    json_only: bool = False,
 ):
     """Convert a PSD file to multiple PNG files.
     When multiprocessing, since pickling Layers are very slow, each process will open the PSD file separately.
