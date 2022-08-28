@@ -1,9 +1,8 @@
 from pathlib import Path
 from setuptools import setup, find_packages
-from distutils.util import convert_path
 
 module_globals = {}
-with open(convert_path("psd2pngs/version.py")) as f:
+with open(Path(__file__).parent / "psd2pngs" / "version.py") as f:
     exec(f.read(), module_globals)
 
 setup(
