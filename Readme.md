@@ -3,6 +3,7 @@
 [![Licence](https://img.shields.io/github/license/34j/psd2pngs)](./License.txt)
 [![Executable](https://img.shields.io/badge/OneFile_.exe-Click-darkblue)](https://github.com/34j/psd2pngs/releases)
 [![Japanese Explanation](https://img.shields.io/badge/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%81%AE%E8%AA%AC%E6%98%8E-Click-blue)](#日本語の説明)
+[![PyPI version](https://img.shields.io/pypi/v/psd2pngs)](https://pypi.org/project/psd2pngs/)
 
 ## Introduction
 
@@ -67,11 +68,7 @@ class LayerInfo(NamedTuple):
 
 ### Using as a module
 
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/psd2pngs)](https://pypi.org/project/psd2pngs/)
-[![PyPI](https://img.shields.io/pypi/dm/psd2pngs)](https://pypi.org/project/psd2pngs/)
-[![PyPI](https://img.shields.io/pypi/status/psd2pngs)](https://pypi.org/project/psd2pngs/)
 [![Read the Docs](https://img.shields.io/readthedocs/psd2pngs?label=Docs%20%28Click%29)](https://psd2pngs.readthedocs.io/)
-[![Contributors](https://img.shields.io/github/contributors/34j/psd2pngs)](https://github.com/34j/psd2pngs/graphs/contributors)
 
 See the [documentation (readthedocs.io)](https://psd2pngs.readthedocs.io/).
 
@@ -82,6 +79,9 @@ See the [documentation (readthedocs.io)](https://psd2pngs.readthedocs.io/).
 Download the latest release from [Releases](https://github.com/34j/psd2pngs/releases).
 
 ### Option 2. Python version using pip install
+
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/psd2pngs)](https://pypi.org/project/psd2pngs/)
+[![PyPI - Downloads (month)](https://img.shields.io/pypi/dm/psd2pngs)](https://pypi.org/project/psd2pngs/)
 
 ```shell
 py -m venv venv
@@ -139,3 +139,5 @@ psd2pngsは、psdファイルをレイヤーの階層構造を維持したまま
 ### 使い方
 
 - psdファイルを右クリックし、`プログラムから開く`を使ってこのアプリで開きます。
+
+[![Contributors](https://img.shields.io/github/contributors/34j/psd2pngs)](https://github.com/34j/psd2pngs/graphs/contributors)
