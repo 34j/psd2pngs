@@ -2,8 +2,7 @@ from pathlib import Path
 from setuptools import setup, find_packages
 
 module_globals = {}
-with open(Path(__file__).parent / "psd2pngs" / "version.py") as f:
-    exec(f.read(), module_globals)
+exec((Path(__file__).parent / "psd2pngs" / "version.py").read_text(), module_globals)
 
 setup(
     name="psd2pngs",
@@ -11,8 +10,8 @@ setup(
     description="Convert a PSD file to PNG files while maintaining the layer hierarchy.",
     author="34j",
     url="https://github.com/34j/psd2pngs",
-    packages=find_packages("psd2pngs"),
-    install_requires=["psd_tools", "click", "tqdm", "pillow", "pyhumps"],
+    packages=find_packages('psd2pngs'),
+    install_requires=["psd-tools", "click", "tqdm", "pillow", "pyhumps"],
     license="MIT",
     python_requires='>=3.9',
     long_description=(Path(__file__).parent / "Readme.md").read_text(encoding="utf-8"),
