@@ -1,11 +1,15 @@
-from typing import Iterable, NamedTuple
-from psd_tools import PSDImage
-from psd2pngs.safe_name import get_safe_name
+from collections.abc import Iterable
 from pathlib import Path
+from typing import NamedTuple
+
+from psd_tools import PSDImage
+
+from psd2pngs.safe_name import get_safe_name
 
 
 class LayerInfo(NamedTuple):
     """Layer information."""
+
     local_path: str
     """The local path to the layer. The file name is safe_name.png."""
     name: str
@@ -21,7 +25,7 @@ class LayerInfo(NamedTuple):
     """
 
 
-def get_layer_info(layer: PSDImage, current_local_path: Path = Path("")) -> LayerInfo:
+def get_layer_info(layer: PSDImage, current_local_path: Path = Path()) -> LayerInfo:
     """Get LayerInfo for the given layer. Recursively get LayerInfo for all children.
 
     Parameters
@@ -35,11 +39,12 @@ def get_layer_info(layer: PSDImage, current_local_path: Path = Path("")) -> Laye
     -------
     LayerInfo
         The LayerInfo for the given layer.
+
     """
     # get names
     name = layer.name
     safe_name = get_safe_name(name)
-    
+
     # get visibility
     is_visible = layer.is_visible()
     is_group = layer.is_group()
@@ -54,10 +59,10 @@ def get_layer_info(layer: PSDImage, current_local_path: Path = Path("")) -> Laye
     if not is_group:
         local_path = local_path.with_suffix(".png")
 
-    # recursively get LayerInfo for all children 
+    # recursively get LayerInfo for all children
     children = []
     if is_group:
-        children = [get_layer_info(child, local_path) for child in layer]
+        children = [get_layer_info(child, local_path) for child in layer]  # ty: ignore[invalid-argument-type]
 
     # return LayerInfo
     return LayerInfo(

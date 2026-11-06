@@ -1,0 +1,60 @@
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = [ "setuptools>=77.0.3" ]
+
+[project]
+name = "psd2pngs"
+version = "1.2.4"
+description = "Convert a PSD file to PNG files while maintaining the layer hierarchy."
+readme = "README.md"
+license = "MIT"
+authors = [
+  { name = "34j" },
+]
+requires-python = ">=3.12"
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: End Users/Desktop",
+  "Natural Language :: English",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Topic :: Multimedia :: Graphics :: Graphics Conversion",
+]
+dependencies = [
+  "click",
+  "pillow",
+  "psd-tools",
+  "pyhumps",
+  "tqdm",
+]
+urls."Bug Tracker" = "https://github.com/34j/psd2pngs/issues"
+urls.Changelog = "https://github.com/34j/psd2pngs/blob/main/CHANGELOG.md"
+urls.documentation = "https://psd2pngs.readthedocs.io"
+urls.repository = "https://github.com/34j/psd2pngs"
+scripts.psd2pngs = "psd2pngs.__main__:psd2pngs"
+
+[dependency-groups]
+dev = [
+  "coverage",
+  "packaging-34j[test]",
+  "pytest",
+  "pytest-cov",
+  "ty",
+]
+docs = [
+  "packaging-34j[docs]",
+]
+
+[tool.ruff]
+extend = ".venv/ruff.toml"
+lint.per-file-ignores."src/psd2pngs/**/*.py" = [ "ALL" ]
+lint.per-file-ignores."tests/**/*.py" = [ "ALL" ]
+
+[tool.pyproject-fmt]
+max_supported_python = "3.14"
+
+[tool.ty]
+terminal.error-on-warning = true

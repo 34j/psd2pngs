@@ -1,0 +1,18 @@
+# Changes here will be overwritten by Copier
+_commit: cba0ccb
+_src_path: gh:34j/pypackage-template-fork
+copyright_year: '2022'
+documentation: true
+github_user: 34j
+has_cli: true
+initial_commit: false
+module_name: psd2pngs
+open_source_license: MIT
+open_with_editor: false
+project_name: psd2pngs
+project_short_description: Convert a PSD file to PNG files while maintaining the layer hierarchy.
+project_slug: psd2pngs
+run_uv_sync: false
+setup_pre_commit: false
+user_name: 34j
+version: 1.2.4
