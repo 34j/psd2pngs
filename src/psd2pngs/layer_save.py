@@ -81,7 +81,7 @@ def save_layer(image_size: tuple[int, int], layer_info: ImageLayerInfo) -> None:
     """
     # make sure that the size and position of the layer is maintained
     with Image.new("RGBA", image_size, (0, 0, 0, 0)) as img:
-        # covert to PIL.Image
+        # convert to PIL.Image
         img_pil = layer_info.layer.topil()
         if img_pil is not None:
             with img_pil:

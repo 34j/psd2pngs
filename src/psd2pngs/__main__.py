@@ -2,7 +2,7 @@ import multiprocessing
 
 import click
 
-from psd2pngs.convertion import convert
+from psd2pngs.conversion import convert
 from psd2pngs.version import __version__
 
 _CONTEXT_SETTINGS = {"help_option_names": ["-?", "-h", "--help"]}
