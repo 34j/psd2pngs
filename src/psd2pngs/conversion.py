@@ -1,28 +1,28 @@
-from typing import Optional, Union
-from psd_tools import PSDImage
-from pathlib import Path
-from tqdm import tqdm
 import concurrent.futures
-from logging import StreamHandler, getLogger, DEBUG
-import numpy as np
-import multiprocessing
-from psd2pngs.layer_save import save_some_layers, search_all_layers, save_layer
-from psd2pngs.layer_info import get_layer_info
 import json
-import humps
+import multiprocessing
+from logging import DEBUG, StreamHandler, getLogger
+from pathlib import Path
 
+import humps
+import numpy as np
+from psd_tools import PSDImage
+from tqdm import tqdm
+
+from psd2pngs.layer_info import get_layer_info
+from psd2pngs.layer_save import save_layer, save_some_layers, search_all_layers
 from psd2pngs.unpack import unpack_nested_namedtuple
 
 
 def convert(
-    psd_path: Union[str, Path],
-    out_dir_path: Optional[Union[str, Path]] = None,
+    psd_path: str | Path,
+    out_dir_path: str | Path | None = None,
     single_process: bool = False,
     n_tasks: int = multiprocessing.cpu_count(),
     use_json: bool = False,
     use_json_camel_case: bool = False,
     json_only: bool = False,
-):
+) -> None:
     """Convert a PSD file to multiple PNG files.
     When multiprocessing, since pickling Layers are very slow, each process will open the PSD file separately.
 
@@ -51,6 +51,7 @@ def convert(
         Raises if use_json and use_json_camel_case are both True.
     ValueError
         Raises if use_json and use_json_camel_case are both False but json_only is True.
+
     """
     # Check paths
     psd_path_ = Path(psd_path).absolute()
@@ -84,9 +85,7 @@ def convert(
 
     # search all layers
     logger.info("Searching all layers...")
-    all_layers = list(
-        tqdm(search_all_layers(psd, out_dir_path_), unit=" layer(s) found")
-    )
+    all_layers = list(tqdm(search_all_layers(psd, out_dir_path_), unit=" layer(s) found"))
 
     # save json files
     if use_json or use_json_camel_case:
@@ -95,7 +94,7 @@ def convert(
         layer_info = unpack_nested_namedtuple(get_layer_info(psd))
         if use_json_camel_case:
             layer_info = humps.camelize(layer_info)  # type: ignore
-        with open(json_path, "w", encoding="utf-8") as f:
+        with Path(json_path).open("w", encoding="utf-8") as f:
             json.dump(layer_info, f, indent=4, ensure_ascii=False)
 
     if json_only:
@@ -122,9 +121,7 @@ def convert(
                 )
 
                 # Create and append task
-                tasks.append(
-                    executor.submit(save_some_layers, psd_path_, out_dir_path_, indcies)
-                )
+                tasks.append(executor.submit(save_some_layers, psd_path_, out_dir_path_, indcies))
 
             # Wait for all tasks to finish. As soon as one task finishes, tqdm progress bar will update.
             [

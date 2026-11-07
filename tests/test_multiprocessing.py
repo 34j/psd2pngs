@@ -1,11 +1,12 @@
-from itertools import repeat
-from tqdm import tqdm
 import concurrent.futures
+from itertools import repeat
 from unittest import TestCase
+
+from tqdm import tqdm
 
 
 def multiprocessing_task(pbar):
-    for i in range(200000):
+    for _i in range(200000):
         pbar.update(1)  # No errors but does not work
 
 

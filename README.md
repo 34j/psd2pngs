@@ -1,9 +1,44 @@
 # psd2pngs
 
-[![Licence](https://img.shields.io/github/license/34j/psd2pngs)](./License.txt)
-[![Executable](https://img.shields.io/badge/OneFile_.exe-Click-darkblue)](https://github.com/34j/psd2pngs/releases)
-[![Japanese Explanation](https://img.shields.io/badge/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%81%AE%E8%AA%AC%E6%98%8E-Click-blue)](#日本語の説明)
-[![PyPI version](https://img.shields.io/pypi/v/psd2pngs)](https://pypi.org/project/psd2pngs/)
+<p align="center">
+  <a href="https://github.com/34j/psd2pngs/actions/workflows/ci.yml?query=branch%3Amain">
+    <img src="https://img.shields.io/github/actions/workflow/status/34j/psd2pngs/ci.yml?branch=main&label=CI&logo=github&style=flat-square" alt="CI Status">
+  </a>
+  <a href="https://psd2pngs.readthedocs.io">
+    <img src="https://img.shields.io/readthedocs/psd2pngs.svg?logo=read-the-docs&logoColor=fff&style=flat-square" alt="Documentation Status">
+  </a>
+</p>
+<p align="center">
+  <a href="https://codecov.io/gh/34j/psd2pngs">
+    <img src="https://img.shields.io/codecov/c/github/34j/psd2pngs.svg?logo=codecov&logoColor=fff&style=flat-square" alt="Test coverage percentage">
+  </a>
+  <a href="https://github.com/astral-sh/uv">
+    <img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json" alt="uv">
+  </a>
+  <a href="https://github.com/astral-sh/ruff">
+    <img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json" alt="Ruff">
+  </a>
+  <a href="https://github.com/j178/prek">
+    <img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/j178/prek/master/docs/assets/badge-v0.json" alt="prek">
+  </a>
+</p>
+<p align="center">
+  <a href="https://pypi.org/project/psd2pngs/">
+    <img src="https://img.shields.io/pypi/v/psd2pngs.svg?logo=python&logoColor=fff&style=flat-square" alt="PyPI Version">
+  </a>
+  <img src="https://img.shields.io/pypi/pyversions/psd2pngs.svg?style=flat-square&logo=python&amp;logoColor=fff" alt="Supported Python versions">
+  <img src="https://img.shields.io/pypi/l/psd2pngs.svg?style=flat-square" alt="License">
+</p>
+
+---
+
+**Documentation**: <a href="https://psd2pngs.readthedocs.io" target="_blank">https://psd2pngs.readthedocs.io </a>
+
+**Source Code**: <a href="https://github.com/34j/psd2pngs" target="_blank">https://github.com/34j/psd2pngs </a>
+
+---
+
+Convert a PSD file to PNG files while maintaining the layer hierarchy.
 
 ## Introduction
 
@@ -33,7 +68,7 @@ Options:
                              to the same directory as the PSD file.
   -s, --single-process       Force not to use multiprocessing.
   -t, --tasks-count INTEGER  Number of tasks. Recommended to be less than or
-                             equal to the number of CPUs (32) because the   
+                             equal to the number of CPUs (32) because the
                              process maximizes the use of CPUs.
   -j, --json                 Output JSON file containing layer information in
                              snake case.
@@ -68,8 +103,6 @@ class LayerInfo(NamedTuple):
 
 ### Using as a module
 
-[![Read the Docs](https://img.shields.io/readthedocs/psd2pngs?label=Docs%20%28Click%29)](https://psd2pngs.readthedocs.io/)
-
 See the [documentation (readthedocs.io)](https://psd2pngs.readthedocs.io/).
 
 ## Installation
@@ -79,9 +112,6 @@ See the [documentation (readthedocs.io)](https://psd2pngs.readthedocs.io/).
 Download the latest release from [Releases](https://github.com/34j/psd2pngs/releases).
 
 ### Option 2. Python version using pip install
-
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/psd2pngs)](https://pypi.org/project/psd2pngs/)
-[![PyPI - Downloads (month)](https://img.shields.io/pypi/dm/psd2pngs)](https://pypi.org/project/psd2pngs/)
 
 ```shell
 py -m venv venv
@@ -97,7 +127,7 @@ git clone https://github.com/34j/psd2pngs.git
 cd ./psd2pngs
 py -m venv venv
 "./venv/Scripts/Activate.bat"
-pip install -r requirements.txt
+pip install .
 python -m psd2pngs from.psd
 ```
 
@@ -106,7 +136,7 @@ python -m psd2pngs from.psd
 ```shell
 py -m venv venv
 "./venv/Scripts/Activate.bat"
-pip install psd2pngs
+pip install .
 pip install pyinstaller
 pyinstaller venv/Lib/site-packages/psd2pngs/__main__.py --onefile -n psd2pngs
 move "./dist/psd2pngs.exe" "./"
@@ -120,9 +150,9 @@ git clone https://github.com/34j/psd2pngs.git
 cd ./psd2pngs
 py -m venv venv
 "./venv/Scripts/Activate.bat"
-pip install -r requirements.txt
+pip install .
 pip install pyinstaller
-pyinstaller psd2pngs/__main__.py --onefile -n psd2pngs
+pyinstaller src/psd2pngs/__main__.py --onefile -n psd2pngs
 move "./dist/psd2pngs.exe" "./"
 ./psd2pngs from.psd
 ```
@@ -139,5 +169,3 @@ psd2pngsは、psdファイルをレイヤーの階層構造を維持したまま
 ### 使い方
 
 - psdファイルを右クリックし、`プログラムから開く`を使ってこのアプリで開きます。
-
-[![Contributors](https://img.shields.io/github/contributors/34j/psd2pngs)](https://github.com/34j/psd2pngs/graphs/contributors)

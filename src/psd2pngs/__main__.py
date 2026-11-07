@@ -1,10 +1,11 @@
-from psd2pngs.convertion import convert
-from psd2pngs.version import __version__
 import multiprocessing
+
 import click
 
+from psd2pngs.conversion import convert
+from psd2pngs.version import __version__
 
-_CONTEXT_SETTINGS = dict(help_option_names=["-?", "-h", "--help"])
+_CONTEXT_SETTINGS = {"help_option_names": ["-?", "-h", "--help"]}
 
 
 @click.command(context_settings=_CONTEXT_SETTINGS)
@@ -18,9 +19,7 @@ _CONTEXT_SETTINGS = dict(help_option_names=["-?", "-h", "--help"])
     default=None,
     help="Output directory path. If not specified, output to the same directory as the PSD file.",
 )
-@click.option(
-    "--single-process", "-s", is_flag=True, help="Force not to use multiprocessing."
-)
+@click.option("--single-process", "-s", is_flag=True, help="Force not to use multiprocessing.")
 @click.option(
     "--tasks-count",
     "-t",
@@ -50,7 +49,7 @@ _CONTEXT_SETTINGS = dict(help_option_names=["-?", "-h", "--help"])
     is_flag=True,
     help="Output JSON file only.",
 )
-def psd2pngs(*args, **kwargs):
+def psd2pngs(*args, **kwargs) -> None:
     """This function should be called from the command line."""
     convert(*args, **kwargs)
 
